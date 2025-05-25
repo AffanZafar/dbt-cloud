@@ -43,4 +43,4 @@ models:
       +schema: dbt_data
     prod:
       +materialized: table
-      +schema: prod_customers
+      +schema: "{{ 'prod_customers' if env_var('DBT_CLOUD_ENVIRONMENT_NAME', 'dev') == 'main' else 'dbt_data' }}"
